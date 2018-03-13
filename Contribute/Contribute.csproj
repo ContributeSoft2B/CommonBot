@@ -276,8 +276,8 @@
     <Content Include="fonts\tw-social-icons.ttf" />
     <Content Include="fonts\tw-social-icons.woff" />
     <Content Include="zh.html" />
-    <None Include="Properties\PublishProfiles\gymchain - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\gymchain - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\CommonBot - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\CommonBot - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

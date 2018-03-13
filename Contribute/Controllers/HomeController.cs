@@ -103,15 +103,8 @@ DATA:{4}
                 logger.Debug($"消息{message.MessageId}已过期！~");
                 return new HttpStatusCodeResult(200, "已处理");
             }
-            string url = string.Empty;
-            if (message.Chat.Id == -1001221163930)
-            {
-                url = $"{Configs.Domain}/telegram/KroeaVerification?verificationCode=";
-            }
-            else
-            {
-                url = $"{Configs.Domain}/telegram/Verification?verificationCode=";
-            }
+            string url= $"{Configs.Domain}/telegram/Verification?verificationCode=";
+            
 
             if (message.Type == MessageType.TextMessage && message.Text.Contains("http") &&
                 !message.Text.Contains("gymchain"))
@@ -176,6 +169,11 @@ DATA:{4}
                     }
 
                 }
+            }
+            if (message.Type == MessageType.TextMessage && message.Text.StartsWith("/test"))
+            {
+                await Bot.Api.SendTextMessageAsync(message.Chat.Id, "测试成功", ParseMode.Default, false,
+                    false, message.MessageId);
             }
             logger.Debug($"消息{message.MessageId}处理完毕！~");
             return new HttpStatusCodeResult(200, "已处理");
