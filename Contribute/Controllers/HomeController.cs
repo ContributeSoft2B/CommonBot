@@ -61,7 +61,7 @@ DATA:{4}
         public ActionResult Index()
         {
             logger.Debug("访问首页");
-            return Redirect("/index.html");
+            return View();
         }
 
         public ActionResult About()
@@ -107,7 +107,7 @@ DATA:{4}
             
 
             if (message.Type == MessageType.TextMessage && message.Text.Contains("http") &&
-                !message.Text.Contains("gymchain"))
+                !message.Text.Contains("dca"))
             {
                 var deleteMessageResult = await Bot.Api.DeleteMessageAsync(message.Chat.Id, message.MessageId);
                 if (!deleteMessageResult)
@@ -119,7 +119,7 @@ DATA:{4}
                 return new HttpStatusCodeResult(200, "删除成功");
             }
             if (message.Type == MessageType.TextMessage && message.Text.Contains("www") &&
-                !message.Text.Contains("gymchain"))
+                !message.Text.Contains("dca"))
             {
 
                 var deleteMessageResult = await Bot.Api.DeleteMessageAsync(message.Chat.Id, message.MessageId);
@@ -132,7 +132,7 @@ DATA:{4}
                 return new HttpStatusCodeResult(200, "删除成功");
             }
             if (message.Type == MessageType.TextMessage && message.Text.Contains("t.me") &&
-                !message.Text.Contains("gymchain"))
+                !message.Text.Contains("dca"))
             {
                 var deleteMessageResult = await Bot.Api.KickChatMemberAsync(message.Chat.Id, message.From.Id);
                 if (!deleteMessageResult)

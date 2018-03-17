@@ -5,17 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using log4net;
+using log4net.Repository.Hierarchy;
 
 namespace Contribute.Controllers
 {
     public class TelegramController : Controller
     {
+        protected static ILog logger = LogManager.GetLogger(typeof(TelegramController));
         private ContributeDbContext db = new ContributeDbContext();
         // GET: Telegram
         [HttpPost]
         public JsonResult Index(string ethAddress, int parentId = 0, Country country = Country.Us)
         {
+            logger.Debug("jinlaile");
+            logger.Debug(ethAddress);
+            logger.Debug(parentId);
             var selectEthAddress = db.Telegrams.FirstOrDefault(t => t.EthAddress == ethAddress);
+            logger.Debug(selectEthAddress==null);
             if (selectEthAddress != null)
             {
                 return Json(new { success = false, selectEthAddress.InviteUrl, selectEthAddress.VerificationCode, msg = "钱包地址已存在！" });
@@ -27,9 +34,10 @@ namespace Contribute.Controllers
                 ParentId = parentId,
                 InviteUrl = "",
                 VerificationCode = $"/code {Guid.NewGuid()}",
-                Country = country
+                Country = country,
+                ChainName = "DCA"
             };
-
+            logger.Debug("zoudaozhe");
             db.Telegrams.Add(telegram);
             db.SaveChanges();
             var data = db.Telegrams.FirstOrDefault(t => t.EthAddress == ethAddress);
@@ -100,7 +108,7 @@ namespace Contribute.Controllers
             }
 
             db.SaveChanges();
-            return Json(new { success = true, msg = $"收到验证码:{verificationCode},恭喜你验证成功，赶快把邀请链接分享给好友，每成功推荐一个好友入群，即可获得2个GCC!", data.InviteUrl }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, msg = $"收到验证码:{verificationCode},恭喜你验证成功，赶快把邀请链接分享给好友，每成功推荐一个好友入群，即可获得2个ETH!", data.InviteUrl }, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
         /// 验证码是否存在，如果存在，和ETH地址绑定（韩国)

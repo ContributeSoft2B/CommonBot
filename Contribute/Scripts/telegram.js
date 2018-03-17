@@ -34,7 +34,7 @@
         var pageLang = $(this).val();
         if (!eAddr) {
             $('.pop-tip').show();
-            $('p.tip-txt').text(onEn ? 'Please enter your ACT wallet address' : '请输入你的ACT钱包地址');
+            $('p.tip-txt').text(onEn ? 'Please enter your ETH wallet address' : '请输入你的ETH钱包地址');
             return false;
         }
         //else if (eAddr.substr(0, 3) != "ACT") {
@@ -44,7 +44,7 @@
         //}
         
         $(this).prop('disabled', 'true');
-        var url = "";
+        var url = '../Telegram/Index';
        
         $.ajax({
             url: url,
