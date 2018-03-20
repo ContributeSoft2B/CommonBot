@@ -37,7 +37,11 @@ namespace ContributeComponents.Domains
         /// </summary>
         public Country Country { get; set; }
         /// <summary>
-        /// InvitedTotalCount
+        /// 币种名称
+        /// </summary>
+        public string ChainName { get; set; }
+        /// <summary>
+        /// 邀请总人数
         /// </summary>
         public int InvitedTotalCount { get; set; }
         /// <summary>

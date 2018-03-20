@@ -61,7 +61,7 @@ DATA:{4}
         public ActionResult Index()
         {
             logger.Debug("访问首页");
-            return Redirect("/index.html");
+            return View();
         }
 
         public ActionResult About()
@@ -103,18 +103,11 @@ DATA:{4}
                 logger.Debug($"消息{message.MessageId}已过期！~");
                 return new HttpStatusCodeResult(200, "已处理");
             }
-            string url = string.Empty;
-            if (message.Chat.Id == -1001221163930)
-            {
-                url = $"{Configs.Domain}/telegram/KroeaVerification?verificationCode=";
-            }
-            else
-            {
-                url = $"{Configs.Domain}/telegram/Verification?verificationCode=";
-            }
+            string url= $"{Configs.Domain}/telegram/Verification?verificationCode=";
+            
 
             if (message.Type == MessageType.TextMessage && message.Text.Contains("http") &&
-                !message.Text.Contains("gymchain"))
+                !message.Text.Contains("dca"))
             {
                 var deleteMessageResult = await Bot.Api.DeleteMessageAsync(message.Chat.Id, message.MessageId);
                 if (!deleteMessageResult)
@@ -126,7 +119,7 @@ DATA:{4}
                 return new HttpStatusCodeResult(200, "删除成功");
             }
             if (message.Type == MessageType.TextMessage && message.Text.Contains("www") &&
-                !message.Text.Contains("gymchain"))
+                !message.Text.Contains("dca"))
             {
 
                 var deleteMessageResult = await Bot.Api.DeleteMessageAsync(message.Chat.Id, message.MessageId);
@@ -139,7 +132,7 @@ DATA:{4}
                 return new HttpStatusCodeResult(200, "删除成功");
             }
             if (message.Type == MessageType.TextMessage && message.Text.Contains("t.me") &&
-                !message.Text.Contains("gymchain"))
+                !message.Text.Contains("dca"))
             {
                 var deleteMessageResult = await Bot.Api.KickChatMemberAsync(message.Chat.Id, message.From.Id);
                 if (!deleteMessageResult)
@@ -176,6 +169,11 @@ DATA:{4}
                     }
 
                 }
+            }
+            if (message.Type == MessageType.TextMessage && message.Text.StartsWith("/test"))
+            {
+                await Bot.Api.SendTextMessageAsync(message.Chat.Id, "测试成功", ParseMode.Default, false,
+                    false, message.MessageId);
             }
             logger.Debug($"消息{message.MessageId}处理完毕！~");
             return new HttpStatusCodeResult(200, "已处理");
