@@ -45,7 +45,7 @@
         
         $(this).prop('disabled', 'true');
         var url = '../Telegram/Index';
-       
+        
         $.ajax({
             url: url,
             type: 'post',
