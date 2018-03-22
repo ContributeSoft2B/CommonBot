@@ -202,9 +202,7 @@
     <Content Include="home.html" />
     <Content Include="hostingstart.html" />
     <Content Include="images\ani-sb7aaf0352b.png" />
-    <Content Include="images\bg.gif" />
     <Content Include="images\logo.png" />
-    <Content Include="images\site_under_main.jpg" />
     <Content Include="images\style.css" />
     <Content Include="img\about-bg.png" />
     <Content Include="img\contact-background.png" />

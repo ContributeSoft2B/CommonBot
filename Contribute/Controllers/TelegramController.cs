@@ -35,7 +35,7 @@ namespace Contribute.Controllers
                 InviteUrl = "",
                 VerificationCode = $"/code {Guid.NewGuid()}",
                 Country = country,
-                ChainName = "DCA"
+                ChainName = "OTC"
             };
             logger.Debug("zoudaozhe");
             db.Telegrams.Add(telegram);
@@ -108,7 +108,7 @@ namespace Contribute.Controllers
             }
 
             db.SaveChanges();
-            return Json(new { success = true, msg = $"收到验证码:{verificationCode},恭喜你验证成功，赶快把邀请链接分享给好友，每成功推荐一个好友入群，即可获得2个ETH!", data.InviteUrl }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, msg = $"收到验证码:{verificationCode},恭喜你验证成功，赶快把邀请链接分享给好友，每成功推荐一个好友入群，即可获得100个OB!", data.InviteUrl }, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
         /// 验证码是否存在，如果存在，和ETH地址绑定（韩国)
