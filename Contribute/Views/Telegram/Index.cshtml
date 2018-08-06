@@ -15,7 +15,7 @@
 <div class="row e-address">
     <input type="hidden" value="@ViewBag.ParentId" name="parentId" class="parId" />
     <div class="form-group col-md-offset-2 col-md-8 e-addr"><input type="text" class="form-control inp" placeholder="请输入你的ETH钱包地址" name="ethAddress" required /></div>
-    <div class="form-group col-md-offset-2 col-md-8 e-sub"><input type="submit" class="btn-sub" value="提交" /></div>
+    <div class="form-group col-md-offset-2 col-md-8 e-sub"><input type="button" class="btn-sub" value="提交" onclick="alert('活动已结束！~')"/></div>
 </div>
 <div class="modal fade pop-tip" tabindex="-1" role="dialog">
     <div class="alert alert-warning alert-dismissible" tabindex="-1">
@@ -29,7 +29,7 @@
 </div>
 
 @section Scripts {
-    <script src="~/Scripts/telegram.js"></script>
+   @* <script src="~/Scripts/telegram.js"></script>*@
 }
 
 
